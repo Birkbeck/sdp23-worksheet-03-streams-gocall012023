@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Random;
@@ -102,11 +104,11 @@ public class Outline {
 
     System.out.println("5b:");
     String q5bString =
-            words.stream()
-                    .filter((s) -> s.length() < 4)
-                    .filter((s) -> s.contains("q"))
-                    .findFirst()
-                    .toString();
+      words.stream()
+              .filter((s) -> s.length() < 4)
+              .filter((s) -> s.contains("q"))
+              .findFirst()
+              .toString();
     System.out.println(q5bString);
   }
 
@@ -120,6 +122,16 @@ public class Outline {
     List<String> words = getList();
     System.out.println("6:");
     // YOUR CODE
+    System.out.println("List items: " + words);
+      words.stream()
+              .peek((s) -> System.out.println("Element inspected is: " + s))
+              .filter((s) -> s.length() < 4)
+              .peek((s) -> System.out.println("Lenght < 4: " + s))
+              .filter((s) -> s.contains("e"))
+              .peek((s) -> System.out.println("Contains e: " + s))
+              .map((s) -> s.toUpperCase())
+              .peek((s) -> System.out.println("To uppercase: " + s))
+              .collect(Collectors.toList());
   }
 
   // (*) Produce a single String that is the result of concatenating the
@@ -132,6 +144,11 @@ public class Outline {
     List<String> words = getList();
     System.out.println("7:");
     // YOUR CODE
+    String q7String =
+      words.stream()
+            .map((s) -> s.toUpperCase())
+            .collect(Collectors.joining());
+    System.out.println(q7String);
   }
 
 
@@ -144,6 +161,10 @@ public class Outline {
     List<String> words = getList();
     System.out.println("8:");
     // YOUR CODE
+    String q8String =
+      words.stream()
+              .collect(Collectors.joining()).toUpperCase();
+    System.out.println(q8String);
   }
 
   // (*) Produce a String that is all the words concatenated together, but
@@ -155,6 +176,10 @@ public class Outline {
     List<String> words = getList();
     System.out.println("9:");
     // YOUR CODE
+    String q9String =
+            words.stream()
+                  .collect(Collectors.joining(","));
+    System.out.println(q9String);
   }
 
   // CONTINUE WITH THE REST OF THE QUESTIONS
@@ -170,5 +195,13 @@ public class Outline {
     question4();
     System.out.println();
     question5();
+    System.out.println();
+    question6();
+    System.out.println();
+    question7();
+    System.out.println();
+    question8();
+    System.out.println();
+    question9();
   }
 }
