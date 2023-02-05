@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -17,6 +18,9 @@ public class Outline {
     List<String> words = getList();
     System.out.println("1: ");
     // YOUR CODE
+      words.stream()
+            .map((e) -> "  " + e)
+            .forEach((e) -> System.out.println(e));
   }
 
   // Repeat this problem but without two spaces in front of each word.
@@ -26,6 +30,9 @@ public class Outline {
     List<String> words = getList();
     System.out.println("2: ");
     // YOUR CODE
+    //words.stream()    // .streams is not needed
+      words.forEach(System.out::println);  // using method reference instead of lambda as above
+
   }
 
   // For each of the following lambda expressions (see Question 5 in Worksheet 2),
@@ -40,6 +47,14 @@ public class Outline {
     List<String> words = getList();
     System.out.println("3:");
     // YOUR CODE
+    // GOC: I've changed this to words > 4 letters, containing "a" and even length
+    List<String> q3List =
+      words.stream()
+            .filter((s) -> s.length() > 4)
+            .filter((s) -> s.contains("a"))
+            .filter((s) -> s.length() % 2 == 0)
+            .toList();
+    System.out.println(q3List);
   }
 
 
@@ -55,6 +70,16 @@ public class Outline {
     List<String> words = getList();
     System.out.println("4:");
     // YOUR CODE
+    List<String> q4List =
+      words.stream()
+            .map((s) -> s + "!")
+            .map((s) -> s.replace("i", "eye"))
+            .map((s) -> s.toUpperCase())
+            //.map(String::toUpperCase)  GOC: using a method reference instead of a lambda
+            .toList();
+    System.out.println(q4List);
+
+
   }
 
 
@@ -67,6 +92,22 @@ public class Outline {
     List<String> words = getList();
     System.out.println("5a:");
     // YOUR CODE
+    String q5aString =
+      words.stream()
+            .filter((s) -> s.length() < 4)
+            .filter((s) -> s.contains("e"))
+            .findFirst()
+            .toString();
+    System.out.println(q5aString);
+
+    System.out.println("5b:");
+    String q5bString =
+            words.stream()
+                    .filter((s) -> s.length() < 4)
+                    .filter((s) -> s.contains("q"))
+                    .findFirst()
+                    .toString();
+    System.out.println(q5bString);
   }
 
 
@@ -119,7 +160,15 @@ public class Outline {
   // CONTINUE WITH THE REST OF THE QUESTIONS
 
   public static void main(String... args) { // varargs alternative to String[]
-    question1();
 
+    question1();
+    System.out.println();
+    question2();
+    System.out.println();
+    question3();
+    System.out.println();
+    question4();
+    System.out.println();
+    question5();
   }
 }
